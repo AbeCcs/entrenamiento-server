@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Publicaciones {
+  id: Int!
+  nombre: String
+}
+
+type Carros {
+  fecha: Int!
+  marca: String
+  modelo: String
+}
+
+type Query {
+  Helloworld: String!
+  posts: [Publicaciones!]!
+  lista: [Carros!]!
+}

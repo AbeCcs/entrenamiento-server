@@ -18,3 +18,12 @@ type Query {
   posts: [Publicaciones!]!
   lista: [Carros!]!
 }
+
+type Mutation {
+  crearPublicacion(postInput: CrearPublicacion!): Publicaciones!
+}
+
+input CrearPublicacion {
+  id: Float!
+  nombre: String!
+}

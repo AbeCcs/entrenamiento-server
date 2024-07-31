@@ -13,4 +13,6 @@ export class Publicaciones {
     @Column()
     @Field({nullable:true})
     nombre: string;
-}
+
+  
+  }

@@ -2,28 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Publicaciones {
-  id: Int!
-  nombre: String
-}
-
 type Carros {
-  fecha: Int!
+  id_vehiculo: Int!
   marca: String
   modelo: String
+  Datos: datos!
+}
+
+type datos {
+  id_propietario: Int!
+  cedula: Int!
+  nombre: String
+  id_vehiculos: Carros!
 }
 
 type Query {
   Helloworld: String!
-  posts: [Publicaciones!]!
-  lista: [Carros!]!
+  consultarTodo: [datos!]!
+  consultarID(id_propietario: Int!): datos!
+  lista_carros: [Carros!]!
 }
 
 type Mutation {
-  crearPublicacion(postInput: CrearPublicacion!): Publicaciones!
+  crearRegistro(postInput: CrearRegistro!): datos!
 }
 
-input CrearPublicacion {
-  id: Float!
+input CrearRegistro {
+  id_propietario: Float!
+  cedula: Float!
   nombre: String!
 }

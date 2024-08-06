@@ -8,7 +8,7 @@ export class CarrosResolver {
     constructor(private carrosService:CarrosService) { }
 
     @Query((returns) => [Carros])
-    lista() {
+    lista_carros() {
       
         return this.carrosService.findAll();
     }

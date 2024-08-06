@@ -1,11 +1,14 @@
 import { Field, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
-export class CrearPublicacion
+export class CrearRegistro
 {
     @Field()
-    id: number;
+    id_propietario: number;
 
+
+    @Field()
+    cedula: number;
 
     @Field()
     nombre: string;

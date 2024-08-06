@@ -1,18 +1,38 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
-import { Column, PrimaryGeneratedColumn, Entity, Unique} from "typeorm";
+import { Carros } from "src/carros/carros.entity";
+import { Column, PrimaryGeneratedColumn, Entity, OneToOne,JoinColumn } from "typeorm";
 
 
 @Entity()
+//@Unique(['id_vehiculo'])
 @ObjectType()
-export class Publicaciones {
+export class datos {
 
-    @PrimaryGeneratedColumn()
-    @Field((type) => Int)
-    id: number;
+  @PrimaryGeneratedColumn()
+  @Field((type) => Int)
+  id_propietario: number;
 
-    @Column()
-    @Field({nullable:true})
-    nombre: string;
+  @Column()
+  @Field((type) => Int)
+  cedula: number;
 
-  
-  }
+
+  @Column()
+  @Field({ nullable: true })
+  nombre: string;
+
+  //@Column()
+  //@Field((type)=>Int)
+  //id_vehiculo:number;
+
+
+  @OneToOne(() => Carros, (carros) => carros.id_vehiculo)
+  @JoinColumn({ name: 'id_vehiculo' })
+  @Field(() => Carros)
+  id_vehiculos: Carros;
+
+}
+
+
+
+

@@ -1,27 +1,33 @@
-import { Injectable} from '@nestjs/common';
-import { Publicaciones } from './publicaciones.entity';
+import { Injectable } from '@nestjs/common';
+import { datos } from './publicaciones.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CrearPublicacion } from './dto/crear-propietario.input';
+import { CrearRegistro } from './dto/crear-propietario.input';
+import { Carros } from 'src/carros/carros.entity';
 
 @Injectable()
-export class PublicacionesService {
+export class Servicios {
 
 
-constructor (@InjectRepository(Publicaciones) private postsRepository: Repository <Publicaciones>)  {}
+    constructor(@InjectRepository(datos) private acciones_Repository: Repository<datos>) { }
 
-findAll() :Promise <Publicaciones[]>
-{
-    return this.postsRepository.find();
-}
+    consultar(): Promise<datos[]> {
+        return this.acciones_Repository.find();
+    }
 
+    
+   async  consultarxID(id:number): Promise<datos[]> {
+        return await this.acciones_Repository.find({
+            where:{
+                id_propietario : id
+            }
+        })
+     }
 
-
-crearPublicacion( post: CrearPublicacion):Promise<Publicaciones>
-{
-    const nuevo_registro = this.postsRepository.create(post);
-    return this.postsRepository.save(nuevo_registro)
-}
+    crearRegistro(post: CrearRegistro): Promise<datos> {
+        const nuevo_registro = this.acciones_Repository.create(post);
+        return this.acciones_Repository.save(nuevo_registro)
+    }
 
 
 

@@ -1,5 +1,7 @@
 import { ObjectType, Field, Int } from "@nestjs/graphql";
-import { Column, PrimaryGeneratedColumn, Entity, Unique} from "typeorm";
+import { generateKey } from "crypto";
+import { datos } from "src/publicaciones/publicaciones.entity";
+import { Column, PrimaryGeneratedColumn, Entity, JoinColumn,OneToOne} from "typeorm";
 
 
 @Entity()
@@ -8,7 +10,7 @@ export class Carros {
 
     @PrimaryGeneratedColumn()
     @Field((type) => Int)
-    fecha: number;
+    id_vehiculo: number;s
 
     @Column()
     @Field({nullable:true})
@@ -19,5 +21,10 @@ export class Carros {
     @Field({nullable:true})
     modelo: string;
 
+    @OneToOne(() => datos, (Datos) => Datos.id_vehiculos)
+    @Field(() => datos)
+    Datos: datos;
+
+    
 
 }

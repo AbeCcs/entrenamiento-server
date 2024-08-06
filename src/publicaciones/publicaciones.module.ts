@@ -1,11 +1,11 @@
 import { Module, Post } from '@nestjs/common';
-import { PublicacionesService } from './publicaciones.service';
+import { Servicios } from './publicaciones.service';
 import { PublicacionesResolver } from './publicaciones.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Publicaciones } from './publicaciones.entity';
+import { datos } from './publicaciones.entity';
 
 @Module({
-  imports : [TypeOrmModule.forFeature([Publicaciones])],
-  providers: [PublicacionesService, PublicacionesResolver]
+  imports : [TypeOrmModule.forFeature([datos])],
+  providers: [Servicios, PublicacionesResolver]
 })
 export class PublicacionesModule {}
